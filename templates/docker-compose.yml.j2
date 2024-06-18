@@ -1,0 +1,25 @@
+
+services:
+  routeros-latest:
+    image: evilfreelancer/docker-routeros:latest
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - routeros:/routeros
+    devices:
+      - /dev/net/tun
+      - /dev/kvm
+    ports:
+      - "22222:22"
+      - "22223:23"
+      - "7777:80"
+      - "8728:8728"
+      - "8729:8729"
+      - "28728:8728"
+      - "28729:8729"
+
+volume:
+  routeros:
+    driver: local
+
